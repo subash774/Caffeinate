@@ -14,3 +14,17 @@ Using pip3:
 ```
 pip3 install caffeinate
 ```
+
+# Usage
+| :memo:        | Tested on OSX and Windows       |
+|---------------|:------------------------|
+
+On windows, you might need to create a simple python file (code below) as path variable seems to be admin restricted. 
+
+```
+from caffeinate import caffeinate
+
+caffeinate.run()
+```
+
+On Linux or Mac OSX, you can simply type ```awake``` in the terminal. 
