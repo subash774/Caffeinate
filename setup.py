@@ -22,7 +22,7 @@ setup(
    zip_safe=False,
    entry_points={
         'console_scripts': [
-            'awake=caffeinate.caffeinate:stay_awake',
+            'awake=caffeinate.caffeinate:run',
         ]
     }
 )
