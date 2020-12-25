@@ -16,8 +16,6 @@ def on_press(key):
     pass
 
 def on_release(key):
-    print('{0} release'.format(
-        key))
     global hist
     
     if key == Key.esc:
@@ -45,6 +43,11 @@ def stay_awake(wait):
 
 
 def run():
+    """
+    Listens for user's keystrokes, if none for given time, shift is pressed to keep the computer awake
+    Args:
+        --time ([type]): [default time interval for keypress to take place]
+    """
     wait = 90
     try:
         parser=argparse.ArgumentParser()
