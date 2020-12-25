@@ -28,3 +28,6 @@ caffeinate.run()
 ```
 
 On Linux or Mac OSX, you can simply type ```awake``` in the terminal. 
+
+# Termination
+To terminate the process, press ```Esc``` key 3 consecutive times.
