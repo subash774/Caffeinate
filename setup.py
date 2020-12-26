@@ -7,7 +7,7 @@ def readme():
 
 setup(
    name='caffeinate',
-   version='0.0.2',
+   version='0.0.3',
    author='Subash Poudyal',
    author_email='subash.poudyal8@gmail.com',
    packages=['caffeinate'],
