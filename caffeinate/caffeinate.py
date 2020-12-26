@@ -3,10 +3,10 @@ from pynput.keyboard import Key, Controller, Listener
 import argparse
 import time
 from threading import Thread
-from datetime import date, datetime
+from datetime import datetime
 
 
-hist = []
+hist = 0
 last_online = datetime.now()
 
 keyboard = Controller()
@@ -15,18 +15,19 @@ keyboard = Controller()
 def on_press(key):
     pass
 
+
 def on_release(key):
     global hist
     
     if key == Key.esc:
-        hist.append(True)
+        hist += 1
 
         # if esc pressed 3 times, exit
-        if len(hist) == 3:
+        if hist == 3:
         # Stop listener
             return False
     else:
-        hist = []
+        hist = 0
 
 
 def stay_awake(wait):
@@ -34,7 +35,6 @@ def stay_awake(wait):
     print(f"Serving caffeine every {wait} seconds")
     while len(hist) < 3:
         if (datetime.now() - last_online).seconds > wait:
-            x = last_online - datetime.now()
             keyboard.press(Key.shift)
             keyboard.release(Key.shift)
             last_online = datetime.now()
@@ -46,7 +46,7 @@ def run():
     """
     Listens for user's keystrokes, if none for given time, shift is pressed to keep the computer awake
     Args:
-        --time ([type]): [default time interval for keypress to take place]
+        --time ([int]): [default time interval for keypress to take place]
     """
     wait = 90
     try:

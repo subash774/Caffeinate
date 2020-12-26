@@ -14,7 +14,7 @@ setup(
    python_requires=">=3.6.3",
    url='https://github.com/subash774/Caffeinate',
    license='MIT',
-   description="Don't let your computer go to sleep while you're busy training your model",
+   description="Don't let your computer go to sleep while you're busy thinking",
    long_description_content_type='text/markdown',
    long_description= readme(),
    install_requires=['pynput>=1.7.2'],

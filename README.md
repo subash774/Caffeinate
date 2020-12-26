@@ -1,5 +1,5 @@
 # Caffeinate
-Don't let your computer go to sleep while training your models
+Don't let your computer go to sleep while you're busy thinking.
 
 # Why would I need this?
 Software engineering is more about thinking than typing. And it's very annoying when you're whiteboarding or just thinking and your work machine goes to sleep. Most of the times, we don't have admin access to change the settings so this helps prevent the computer from going to sleep.
@@ -30,4 +30,10 @@ caffeinate.run()
 On Linux or Mac OSX, you can simply type ```awake``` in the terminal. 
 
 # Termination
-To terminate the process, press ```Esc``` key 3 consecutive times.
+To terminate the process, press ```Esc``` key 3 consecutive times (doesn't have to be terminal focused key presses).
+
+
+# TODO 
+* [ ] Add good documentation to the usage with params explained
+* [ ] Cleanup the code, maybe use classes for extentibility 
+* [ ] 
