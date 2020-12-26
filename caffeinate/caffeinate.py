@@ -1,45 +1,40 @@
-from threading import Thread
-from pynput.keyboard import Key, Controller, Listener
 import argparse
 import time
-from threading import Thread
 from datetime import datetime
+from threading import Thread
+from pynput.keyboard import Key, Controller, Listener
 
 
-hist = 0
-last_online = datetime.now()
+class Caffeinate:
 
-keyboard = Controller()
+    def __init__(self):
+        self.hist = 0
+        self.last_online = datetime.now()
+        self.keyboard = Controller()
 
+    def on_press(self, key):
+        pass
 
-def on_press(key):
-    pass
+    def on_release(self, key):
+        if key == Key.esc:
+            self.hist += 1
 
+            # if esc pressed 3 times, exit
+            if self.hist == 3:
+                # Stop listener
+                return False
+        else:
+            self.hist = 0
 
-def on_release(key):
-    global hist
-    
-    if key == Key.esc:
-        hist += 1
-
-        # if esc pressed 3 times, exit
-        if hist == 3:
-        # Stop listener
-            return False
-    else:
-        hist = 0
-
-
-def stay_awake(wait):
-    global last_online
-    print(f"Serving caffeine every {wait} seconds")
-    while hist < 3:
-        if (datetime.now() - last_online).seconds > wait:
-            keyboard.press(Key.shift)
-            keyboard.release(Key.shift)
-            last_online = datetime.now()
-        time.sleep(1)
-    return False
+    def stay_awake(self, wait):
+        print(f"Serving caffeine every {wait} seconds")
+        while self.hist < 3:
+            if (datetime.now() - self.last_online).seconds > wait:
+                self.keyboard.press(Key.shift)
+                self.keyboard.release(Key.shift)
+                self.last_online = datetime.now()
+            time.sleep(1)
+        return False
 
 
 def run():
@@ -48,23 +43,22 @@ def run():
     Args:
         --time ([int]): [default time interval for keypress to take place]
     """
-    wait = 90
-    try:
-        parser=argparse.ArgumentParser()
-        parser.add_argument('--time', help='Activate after certain time in seconds')
-        args=parser.parse_args()
-        wait = int(args.time)
 
-    except Exception as e:
-        print(f"No time argument passed, serving caffeine every {wait} secs")
-        pass
+    caffeinate = Caffeinate()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--time', type=int, default=90, help='Activate after certain time in seconds')
+    args = parser.parse_args()
 
     listener = Listener(
-        on_press=on_press,
-        on_release=on_release)
-    awake = Thread(target=stay_awake, args=(wait,))
+        on_press=caffeinate.on_press,
+        on_release=caffeinate.on_release)
+    awake = Thread(target=caffeinate.stay_awake, args=(args.time,))
 
     listener.start()
     awake.start()
     listener.join()
     awake.join()
+
+
+if __name__ == '__main__':
+    run()
