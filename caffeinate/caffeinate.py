@@ -33,7 +33,7 @@ def on_release(key):
 def stay_awake(wait):
     global last_online
     print(f"Serving caffeine every {wait} seconds")
-    while len(hist) < 3:
+    while hist < 3:
         if (datetime.now() - last_online).seconds > wait:
             keyboard.press(Key.shift)
             keyboard.release(Key.shift)

@@ -36,4 +36,3 @@ To terminate the process, press ```Esc``` key 3 consecutive times (doesn't have 
 # TODO 
 * [ ] Add good documentation to the usage with params explained
 * [ ] Cleanup the code, maybe use classes for extentibility 
-* [ ] 
